@@ -22,15 +22,15 @@ int main(){
 	if (status < 0) return 0;
 	else printf("connected\n");
 
-	/* char *message = "POST /post HTTP/1.0\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 27\n\nfield1=value1&field2=value2\n"; */
-	char *message = "GET /image/png\n\n";
+	char *message = "POST /post HTTP/1.0\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 27\n\nfield1=value1&field2=value2\n";
+	/* char *message = "GET /image/png\n\n"; */
 
 
 
 	status = send(socket_desc, message, strlen(message), 0);
 	if (status < 0) return EXIT_FAILURE;
 	else printf("message sent\n\n");
-	FILE * file = fopen("new.png","a+");
+	FILE * file = fopen("new.txt","a+");
 	char buffer[128];
 	int buff;
 	while (1){buff = recv(socket_desc, buffer,127, 0);

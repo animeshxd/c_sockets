@@ -4,6 +4,8 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
+/* #define BUFFER_SIZE 128 */
+#define NEWLINE printf("\n")
 int main(){
 	int socket_desc; // server description
 	struct sockaddr_in server; //servet address and port
@@ -21,25 +23,28 @@ int main(){
 	else printf("connected\n");
 
 	/* char *message = "POST /post HTTP/1.0\nContent-Type: application/x-www-form-urlencoded\nContent-Length: 27\n\nfield1=value1&field2=value2\n"; */
-	char *message = "GET /image/png\nimage/png\n";
+	char *message = "GET /image/png\n\n";
 
 
 
 	status = send(socket_desc, message, strlen(message), 0);
-	if (status < 0) printf("Failed to send");
+	if (status < 0) return EXIT_FAILURE;
 	else printf("message sent\n\n");
+	FILE * file = fopen("new.png","a+");
+	char buffer[128];
+	int buff;
+	while (1){buff = recv(socket_desc, buffer,127, 0);
+		if (buff <= 0) break;
+		puts(buffer);
+		NEWLINE;
 
-	char buffer[513];
-	int buff = recv(socket_desc, buffer,512, 0);
-	/* printf("%d",buff); */
-	printf(" %c ", buffer[512]);
-	printf("%s", buffer);
-	memset(buffer, 0, 512);
-	recv(socket_desc, buffer, buff, 0);
-	printf("\n\n%s",buffer);
+		fwrite(buffer, buff, 1, file);
+		printf(" writting %d ", buff);}
 		
-	recv(socket_desc, buffer, 500, 0);
-	puts(buffer);
+	
+	fclose(file);
+
+
 
 
 	

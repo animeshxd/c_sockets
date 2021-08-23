@@ -1,0 +1,27 @@
+HTTP/1.1 200 OK
+Date: Tue, 27 Jul 2021 12:43:05 GMT
+Content-Type: application/json
+Content-Length: 515
+Connection: close
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "field1": "value1", 
+    "field2": "value2"
+  }, 
+  "headers": {
+    "Content-Length": "27", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "a0207c42-pmhttpbin-pmhttpb-c018-592832243.us-east-1.elb.amazonaws.com", 
+    "X-Amzn-Trace-Id": "Root=1-60ffff59-6d5da6a127336dfc0ee95a56"
+  }, 
+  "json": null, 
+  "origin": "47.11.25.192", 
+  "url": "http://a0207c42-pmhttpbin-pmhttpb-c018-592832243.us-east-1.elb.amazonaws.com/post"
+}
